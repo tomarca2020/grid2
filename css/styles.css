@@ -1,0 +1,101 @@
+/*Aqui hay huecos ya que se indican que cada imagen tiene un width del 100% sin indicar el height*/
+
+/*Para que se ajuste a la cuadricula hay que indicar tambien un alto del 100% o height*/
+
+/*Aqui se coloca el object-fit para que se ajusten las imagenes y aun quedan huecos*/
+
+
+/*Par quitar los huecos se usa grid-auto-flow: row dense;*/
+*{padding: 0;
+ margin:0;
+box-sizing: border-box;
+}
+
+
+.gallery{
+    display:grid;
+    /*Llene todas las columnas con un tamaño minimo de 200px y un tamaño maximo de 300px*/
+    grid-template-columns: repeat(auto-fill,min-max(200px,1fr));
+    grid-gap:2px; 
+    grid-auto-rows: 100px; /*aqui lo basico es decir que todas las filas tengan 100px*/
+
+    /*Dado este cambio las imagenes se deformaron porque se ajustan en acho y el alto de su contenedor*/
+
+    grid-auto-flow: row dense; /*Para que no se den huecos*/
+    
+}
+
+.gallery img{
+    width: 100%; /*Aqui la imagen ocupa el 100% del track que le corresponde*/
+    height: 100%;
+   object-fit: cover; /*Esta propiedad es para que se ajusten los contenidos en las celdas*/
+
+}
+
+
+.gallery img:nth-child(3n){ /*Elementos de 3 en 3 se aplica lo de abajo pero se superponen ya que se les dicen donde comienzan y donde terminan*/ 
+   /* grid-column: 3 / span 4; /*empieza en la linea 3 y se expande o ocupa  4 columnas de ancho*/
+
+   /* grid-row: 2 / span 2; /*empieza en la fila 2 y ocupa 2 filas*/
+
+
+    /*lo anterior se puede optimizar con:
+    
+    grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end;
+    
+    
+    ;*/
+
+
+   /* grid-area: 2 / 3 / 4 /7; esta es con lineas*/
+
+   
+   
+    /*se les elimina los inicio para q las imagenes no se superpongan y asi empiezen donde les corresponde*/
+   
+   
+   grid-area: span 2 / span 3; 
+
+   /*
+   
+   grid-area: 2 / 3 / span 2 / span 4; 
+
+   es igual a
+
+
+   grid-area: 2 / 3 / 4 /7;
+
+
+   es igual a
+
+
+   grid-column: 3 / span 4;
+   grid-row: 2 / span 2;
+
+
+
+   
+   
+   
+   */
+
+
+} 
+
+
+.gallery img:nth-child(5n){
+
+/*de 5 en 5*/
+
+
+ grid-area:span 3 / span 4;
+
+}
+
+
+.gallery img:nth-child(7n){
+ /*de 7 en 7*/
+  grid-area: span 2 / span 1;
+
+}
+
